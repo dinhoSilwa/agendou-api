@@ -1,7 +1,9 @@
-export interface IadminUserModel {
+import type { Document } from "mongoose";
+
+export interface IadminUserModel extends Document {
   name: string;
   email: string;
-  telefone: string;
+  phone: string;
   password: string;
   createdAt?: Date;
   updatedAt?: Date;

@@ -1,11 +1,11 @@
-import { model, Schema } from "mongoose";
+import { model, Schema} from "mongoose";
 import type { IadminUserModel } from "../../@types/useradmin";
 
 const adminUserModel = new Schema<IadminUserModel>(
   {
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
-    telefone: { type: String, required: true },
+    phone: { type: String, required: true },
     password: { type: String, required: true },
   },
   { timestamps: true }
