@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start:dev": "nodemon --watch 'src/' --exc 'ts-node src/index.ts' -e tsc"
+    "build": "tsc",
+    "start": "node dist/serve.js",
+    "dev": "ts-node-dev src/server.ts",
+    "start:dev": "nodemon --watch 'src/' --exc 'ts-node src/index.ts' -e tsc",
+    "prestart": "yarn build"
   },
   "keywords": [],
-  "author": "",
+  "author": "claudio silva",
   "license": "ISC",
   "description": "",
   "devDependencies": {
@@ -19,6 +22,7 @@
     "globals": "^15.9.0",
     "nodemon": "^3.1.4",
     "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
     "tsc": "^2.0.4",
     "typescript": "^5.5.4",
     "typescript-eslint": "^8.0.1"
