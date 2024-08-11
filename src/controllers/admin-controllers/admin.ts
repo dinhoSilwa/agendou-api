@@ -8,6 +8,6 @@ export const createAdmin = async (req: Request, res: Response) => {
     await createnewadmin.save();
     res.status(201).json(createnewadmin);
   } catch (error) {
-    res.status(400).json({ msg: "Falha ao Criar usuário" });
+    res.status(400).json({ msg: "Falha ao Criar usuário", errorMsg: error });
   }
 };
