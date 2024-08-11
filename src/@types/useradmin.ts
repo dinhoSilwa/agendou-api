@@ -3,4 +3,6 @@ export interface IadminUserModel {
   email: string;
   telefone: string;
   password: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
