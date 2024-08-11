@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
-const mongoUri = process.env.MONGODB_URI!;
+import "dotenv/config";
 
 export const connectDb = async () => {
   try {
-    await mongoose.connect(mongoUri || "");
+    await mongoose.connect(process.env.MONGODB_URI!);
     console.log("Conectado ao Banco de Dados");
   } catch (err) {
     console.error("Falha ao conectar", err);
