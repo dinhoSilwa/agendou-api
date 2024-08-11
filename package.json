@@ -6,8 +6,7 @@
     "build": "tsc",
     "start": "node dist/serve.js",
     "dev": "ts-node-dev src/server.ts",
-    "start:dev": "nodemon --watch 'src/' --exc 'ts-node src/index.ts' -e tsc",
-    "prestart": "yarn build"
+    "start:dev": "nodemon --watch 'src/' --exc 'ts-node src/index.ts' -e tsc"
   },
   "keywords": [],
   "author": "claudio silva",
@@ -29,7 +28,6 @@
   },
   "dependencies": {
     "@types/bcrypt": "^5.0.2",
-    "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
