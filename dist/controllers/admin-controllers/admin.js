@@ -23,3 +23,4 @@ const createAdmin = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.createAdmin = createAdmin;
+//# sourceMappingURL=admin.js.map

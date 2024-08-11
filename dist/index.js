@@ -11,3 +11,4 @@ exports.app = (0, express_1.default)();
 (0, db_1.connectDb)();
 exports.app.use(express_1.default.json());
 exports.app.use("/adminusers", adminroute_1.adminRoute);
+//# sourceMappingURL=index.js.map

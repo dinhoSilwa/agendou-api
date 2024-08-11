@@ -9,3 +9,4 @@ const adminUserModel = new mongoose_1.Schema({
     password: { type: String, required: true },
 }, { timestamps: true });
 exports.UserAdmin = (0, mongoose_1.model)("adm-user", adminUserModel);
+//# sourceMappingURL=adminuser-model.js.map

@@ -12,17 +12,30 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.connectDb = void 0;
-const mongoose_1 = __importDefault(require("mongoose"));
-require("dotenv/config");
-const connectDb = () => __awaiter(void 0, void 0, void 0, function* () {
+exports.comparePassHash = exports.createPassHash = void 0;
+const bcrypt_1 = __importDefault(require("bcrypt"));
+const saltRounds = 10;
+const createPassHash = (pass) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield mongoose_1.default.connect(process.env.MONGODB_URI);
-        console.log("Conectado ao Banco de Dados");
+        const createHash = yield bcrypt_1.default.hash(pass, saltRounds);
+        return createHash;
     }
-    catch (err) {
-        console.error("Falha ao conectar", err);
-        process.exit(1);
+    catch (error) {
+        throw new Error("Erro ao criar o hash da senha");
     }
 });
-exports.connectDb = connectDb;
+exports.createPassHash = createPassHash;
+const comparePassHash = (pass, hashedPassword) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const ismatch = yield bcrypt_1.default.compare(pass, hashedPassword);
+        if (!ismatch) {
+            console.log("Senhas incompativeis");
+        }
+        return ismatch;
+    }
+    catch (error) {
+        throw new Error("Erro ao criar o hash da senha");
+    }
+});
+exports.comparePassHash = comparePassHash;
+//# sourceMappingURL=passwordhash.js.map

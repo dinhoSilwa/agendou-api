@@ -5,3 +5,4 @@ const PORT = process.env.PORT || 5000;
 index_1.app.listen(PORT, () => {
     console.log(`Servidor Rodando na Porta : ${PORT}`);
 });
+//# sourceMappingURL=server.js.map
