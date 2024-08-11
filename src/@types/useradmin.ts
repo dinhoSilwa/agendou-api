@@ -8,3 +8,8 @@ export interface IadminUserModel extends Document {
   createdAt?: Date;
   updatedAt?: Date;
 }
+
+export interface IgetAdmin {
+  email: string;
+  password: string;
+}
