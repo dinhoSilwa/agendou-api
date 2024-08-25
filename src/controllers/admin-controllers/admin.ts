@@ -1,8 +1,10 @@
 import type { Request, Response } from "express";
 import { UserAdmin } from "../../models/mongoose-schemas/adminuser-model";
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 const saltRounds = 10;
+const jwtsecret = process.env.JWTSECRET as string;
 
 export const createAdmin = async (req: Request, res: Response) => {
   const { name, email, password, phone } = req.body;
@@ -32,7 +34,7 @@ export const getAdmin = async (req: Request, res: Response) => {
       });
     }
 
-    const getAdminUser = await UserAdmin.findOne({ email });
+    const getAdminUser = await UserAdmin.findOne({ email }, "-phone");
 
     if (!getAdminUser) {
       return res.status(404).json({ msg: "Usuário não Encontrado" });
@@ -44,8 +46,11 @@ export const getAdmin = async (req: Request, res: Response) => {
     }
 
     const { name: username, email: useremail } = getAdminUser;
+    const token = jwt.sign({ name: username, email: useremail }, jwtsecret, {
+      expiresIn: "1h",
+    });
 
-    return res.status(200).json({ username, useremail });
+    return res.status(200).json({ getAdminUser, token });
   } catch (error) {
     console.error("Falha ao Buscar usuário", error);
   }

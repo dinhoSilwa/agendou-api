@@ -14,6 +14,3 @@ app.use(
   })
 );
 app.use("/adminusers", adminRoute);
-app.get("/", (req: Request, res: Response) => {
-  res.send("Rodou");
-});
