@@ -27,22 +27,25 @@ export const getAdmin = async (req: Request, res: Response) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
-      res.status(404).json({
+      return res.status(404).json({
         msg: "Campos de Email e Senha Obrigatórios",
       });
-      throw new Error("Os Campos são Obrigátorios");
     }
+
     const getAdminUser = await UserAdmin.findOne({ email });
+
     if (!getAdminUser) {
       return res.status(404).json({ msg: "Usuário não Encontrado" });
     }
 
-    const ismatch = bcrypt.compare(password, getAdminUser.password);
+    const ismatch = await bcrypt.compare(password, getAdminUser.password);
     if (!ismatch) {
       return res.status(400).json({ msg: "Senha inválida" });
     }
 
-    return res.status(200).json({ msg: "Usuário validado com Sucesso" });
+    const { name: username, email: useremail } = getAdminUser;
+
+    return res.status(200).json({ username, useremail });
   } catch (error) {
     console.error("Falha ao Buscar usuário", error);
   }
