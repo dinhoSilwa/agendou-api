@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 
 const jwtsecret = process.env.JWTSECRET as string;
 
-export const autheticateToken = (
+export const authenticateToken = (
   req: Request,
   res: Response,
   next: NextFunction
@@ -12,7 +12,7 @@ export const autheticateToken = (
   const token = req.header("Authorization")?.split(" ")[1];
 
   if (!token) {
-    return res.status(401).json({ msg: "Token não fornecido" });
+    return res.status(401).json({ msg: "Token não fornecido", token });
   }
 
   try {
@@ -20,7 +20,6 @@ export const autheticateToken = (
     const verify = jwt.verify(token, jwtsecret);
     // Armazena as informações do token no request para uso posterior, se necessário
     req.body = verify;
-
     // Prossegue para o próximo middleware ou rota
     next();
   } catch (error) {

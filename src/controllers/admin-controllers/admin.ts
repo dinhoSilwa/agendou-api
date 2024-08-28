@@ -50,8 +50,10 @@ export const getAdmin = async (req: Request, res: Response) => {
       expiresIn: "1h",
     });
 
-    return res.status(200).json({ getAdminUser, token });
+    return res.status(200).json({ token });
   } catch (error) {
-    console.error("Falha ao Buscar usuário", error);
+    return res
+      .status(500)
+      .json({ msg: "Falha ao Buscar usuário", errorMsg: error });
   }
 };
